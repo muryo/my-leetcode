@@ -24,6 +24,26 @@ def pascal2(row_index)
 	triangle[row_index]
 end
 
+def pascal2_tune(row_index)
+	len = row_index + 1
+	triangle = Array.new(len, 0)
+
+	triangle[0] = 1
+
+	(1..row_index).each { |i|
+		mid = i / 2
+		(1..mid).reverse_each { |j|
+			triangle[j] = triangle[j-1] + triangle[j]
+		}
+
+		(0..(i+1)/2).each { |j|
+			triangle[i-j] = triangle[j]
+		}
+	}
+
+	triangle
+end
+
 num = ARGV[0].to_i
 #puts "zzz"
 #puts pascal2(num)
