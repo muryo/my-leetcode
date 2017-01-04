@@ -54,3 +54,38 @@ def three_sum_tuned(nums)
 	result.uniq
 end
 
+def three_sum_tuned2(nums)
+	nums.sort!
+
+	if nums.size < 3
+		return nil
+	end
+
+	result = []
+	i = 0
+	while i < nums.size - 2
+		low = i + 1
+		high = nums.size - 1
+
+		while low < high
+			if nums[i] + nums[low] + nums[high] == 0
+				result << [nums[i], nums[low], nums[high]]
+				low += 1
+				high -= 1
+				low += 1 while low < high && nums[low-1] == nums[low]
+				high -= 1 while low < high && nums[high+1] == nums[high]
+			elsif nums[i] + nums[low] + nums[high] > 0
+				high -= 1
+			else
+				low += 1
+			end
+		end
+
+		while i < nums.size-2 && nums[i+1] == nums[i]
+			i += 1
+		end
+		i += 1
+	end
+
+	result
+end
