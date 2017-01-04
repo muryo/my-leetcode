@@ -68,13 +68,14 @@ def three_sum_tuned2(nums)
 		high = nums.size - 1
 
 		while low < high
-			if nums[i] + nums[low] + nums[high] == 0
+			sum = nums[i] + nums[low] + nums[high]
+			if sum == 0
 				result << [nums[i], nums[low], nums[high]]
 				low += 1
 				high -= 1
 				low += 1 while low < high && nums[low-1] == nums[low]
 				high -= 1 while low < high && nums[high+1] == nums[high]
-			elsif nums[i] + nums[low] + nums[high] > 0
+			elsif sum > 0
 				high -= 1
 			else
 				low += 1
