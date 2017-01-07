@@ -39,16 +39,14 @@ def largest_rectangle_area_tune(heights)
 
 	i = 0
 	while i < len
-		if index.size > 0 && heights[i] >= heights[index.last]
+		if index.empty? || heights[i] >= heights[index.last]
 			index.push(i)
-		elsif index.size >0 && heights[i] < heights[index.last]
-			bar = heights[index.pop]
-			sum = bar * ( index.empty? ? (i - 1) : (i - 1 - index.last))
-			max_rectangle = sum if sum > max_rectangle
+			i += 1
 		else
-			index.push(i)
+			bar = heights[index.pop]
+			sum = bar * ( index.empty? ? i  : (i - 1 - index.last))
+			max_rectangle = sum if sum > max_rectangle
 		end
-		i += 1
 	end
 
 	max_rectangle
