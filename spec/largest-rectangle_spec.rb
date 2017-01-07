@@ -19,4 +19,14 @@ describe "largest-rectangle" do
 		expect(largest_rectangle_area_tune([])).to eq 0
 		expect(largest_rectangle_area_tune([1])).to eq 1
 	end
+
+	it "finds the largest rectangle containing only 1 and returns its area" do
+		expect(maximal_rectangle(["10100", "10111", "11111", "10010"])).to eq 6
+		expect(maximal_rectangle(["11100"])).to eq 3
+		expect(maximal_rectangle(["0"])).to eq 0
+		expect(maximal_rectangle(["1"])).to eq 1
+		expect(maximal_rectangle([])).to eq 0
+		expect(maximal_rectangle([""])).to eq 0
+		expect(maximal_rectangle(nil)).to eq 0
+	end
 end
