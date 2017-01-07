@@ -67,24 +67,22 @@ def maximal_rectangle(matrix)
 	length = matrix[0].size
 
 	max = nil
-	array_set = []
-	(0..length-1).each { |i|
-		arr = []
-		(0..height-1).each { |j|
-			bar = 0
-			(i..length-1).each { |k|
-				if matrix[j][k] == "1"
-					bar += 1
-				else
-					break
-				end
-			}
-			arr << bar
-		}
-		array_set << arr
+	bar = Array.new(height)
+	(0..height-1).each { |i|
+		bar[i] = Array.new(length)
 	}
 
-	array_set.each { |arr|
+	(0..length-1).each { |j|
+		(0..height-1).each { |i|
+			if matrix[i][j] == '0'
+				bar[i][j] = 0
+			else
+				bar[i][j] = i == 0? 1 : bar[i-1][j] + 1
+			end
+		}
+	}
+
+	bar.each { |arr|
 		max = largest_rectangle_area_tune(arr) if !max || largest_rectangle_area_tune(arr) > max
 	}
 
