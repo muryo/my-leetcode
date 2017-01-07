@@ -13,10 +13,14 @@ def find_minimum(nums)
 	low = 0
 	high = len - 1
 	while low < high - 1
-		mid = (low + high) / 2
+		if nums[low] < nums[high]
+			return nums[low]
+		end
+
+		mid = low + (high - low) / 2
 		if nums[mid] > nums[low]
 			low = mid
-		elsif nums[mid] < nums[high]
+		elsif nums[mid] < nums[low]
 			high = mid
 		end
 	end
@@ -54,4 +58,32 @@ def find_minimum2(nums)
 
 	min = nums[low+1]
 	return min
+end
+
+def find_min2(nums)
+	if !nums || nums.size == 0
+		return nil
+	end
+
+	len = nums.size
+	return nums[0] if nums.size == 1 || nums[0] < nums[len-1]
+
+	low = 0
+	high = len - 1
+	while low < high - 1
+		if nums[low] < nums[high]
+			return nums[low]
+		end
+		mid = low + (high - low) / 2
+		if nums[mid] > nums[low]
+			low = mid
+		elsif nums[mid] < nums[low]
+			high = mid
+		else
+			low += 1
+		end
+	end
+
+	#min = nums[low] < nums[high] ? nums[low] : nums[high]
+	return nums[low+1]
 end
