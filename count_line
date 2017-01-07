@@ -1,1 +1,6 @@
-find . -maxdepth 2  -name "*.rb" | xargs cat | sed '/^\s*$/d;/^\s*#/d' | wc  -l
+#!/bin/sh
+
+total_lines=$(find . -maxdepth 2 -name "*.rb" | xargs cat | wc -l)
+effective_lines=$(find . -maxdepth 2 -name "*.rb" | xargs cat | sed '/^\s*$/d;/^\s*#/d' | wc -l)
+
+echo "total lines: $total_lines, effective lines: $effective_lines"
