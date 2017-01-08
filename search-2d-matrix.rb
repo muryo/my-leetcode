@@ -49,3 +49,25 @@ def search_matrix(matrix, target)
 		return false
 	end
 end
+
+def search_matrix2(matrix, target)
+	if !matrix || matrix.empty? || matrix[0].empty?
+		return false
+	end
+
+	col_len = matrix[0].size
+	row_len = matrix.size
+
+	row = row_len - 1
+	col = 0
+	while row >= 0 && col < col_len
+		if target < matrix[row][col]
+			row = row - 1
+		elsif target > matrix[row][col]
+			col = col + 1
+		else
+			return true
+		end
+	end
+	return false
+end
