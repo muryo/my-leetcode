@@ -2,5 +2,6 @@
 
 total_lines=$(find . -maxdepth 2 -name "*.rb" | xargs cat | wc -l)
 effective_lines=$(find . -maxdepth 2 -name "*.rb" | xargs cat | sed '/^\s*$/d;/^\s*#/d' | wc -l)
+algo_lines=$(find . -maxdepth 1 -name "*.rb" | xargs cat | sed '/^\s*$/d;/^\s*#/d' | wc -l)
 
-echo "total lines: $total_lines, effective lines: $effective_lines"
+echo "total lines: $total_lines, effective lines: $effective_lines, algorithm (non-test) lines: $algo_lines"
