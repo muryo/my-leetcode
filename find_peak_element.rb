@@ -37,3 +37,26 @@ def find_peak_element(nums)
 
 	return nil
 end
+
+def find_peak_element_concise(nums)
+	if !nums || nums.empty?
+		return nil
+	end
+
+	len = nums.size
+	if len == 1
+		return 0
+	end
+
+	(0..len-1).each { |i|
+		case i
+		when 0
+			return 0 if nums[i] > nums[i + 1]
+		when len - 1
+			return len - 1 if nums[i] > nums[i - 1]
+		else
+			return i if nums[i] > nums[i + 1] && nums[i] > nums[i - 1]
+		end
+	}
+	nil
+end

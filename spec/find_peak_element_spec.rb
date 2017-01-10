@@ -10,4 +10,14 @@ describe "find peak element" do
 		expect(find_peak_element([1, 1, -1, 3])).to eq 3
 		expect(find_peak_element([3, 2, -1, 1])).to eq 0
 	end
+
+	it "finds the peak element by concise version" do
+		expect(find_peak_element_concise([1, 2, 3, 1])).to eq 2
+		expect(find_peak_element_concise([1, 1])).to eq nil
+		expect(find_peak_element_concise([1])).to eq 0
+		expect(find_peak_element_concise([1, 2])).to eq 1
+		expect(find_peak_element_concise([1, 2, -1, 1])).to eq 1
+		expect(find_peak_element_concise([1, 1, -1, 3])).to eq 3
+		expect(find_peak_element_concise([3, 2, -1, 1])).to eq 0
+	end
 end
