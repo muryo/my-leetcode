@@ -11,29 +11,25 @@
 # @param {Integer[]} preorder
 # @param {Integer[]} inorder
 # @return {TreeNode}
-def create_tree(preorder, ps, pe, inorder, is, ie, index_map)
+def create_tree(preorder, ps, pe, inorder, is, ie)
         if ps > pe || is > ie
                 return nil
         end
 
         root = TreeNode.new(preorder[ps])
-        mid = index_map[preorder[ps]]
+        mid = inorder.index(preorder[ps])
 
         num = mid - is
-        root.left = create_tree(preorder, ps + 1, ps + num, inorder, is, is + num - 1, index_map)
-        root.right = create_tree(preorder, ps + num + 1, pe, inorder, is + num + 1, ie, index_map)
+        root.left = create_tree(preorder, ps + 1, ps + num, inorder, is, is + num - 1)
+        root.right = create_tree(preorder, ps + num + 1, pe, inorder, is + num + 1, ie)
 
         return root
 end
 
 def build_tree(preorder, inorder)
         return nil if preorder.empty? || inorder.empty?
-        index_map = {}
-        inorder.each_with_index do |val, i|
-            index_map[val] = i
-        end
 
-        return create_tree(preorder, 0, preorder.size - 1, inorder, 0, inorder.size - 1, index_map)
+        return create_tree(preorder, 0, preorder.size - 1, inorder, 0, inorder.size - 1)
 end
 
 def build_tree_buggy(preorder, inorder)
