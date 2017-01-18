@@ -11,6 +11,29 @@
 # @param {Integer[]} preorder
 # @param {Integer[]} inorder
 # @return {TreeNode}
+
+class TreeNode
+    attr_accessor :val, :left, :right
+    def initialize(val)
+        @val = val
+        @left, @right = nil, nil
+    end
+end
+
+def build_tree_concise(preorder, inorder)
+	if preorder.empty? || inorder.empty?
+		return nil
+	end
+
+	root = TreeNode.new(preorder[0])
+	mid = inorder.index(preorder[0])
+
+	root.left = build_tree_concise(preorder[1..mid], inorder[0..mid - 1])
+	root.right = build_tree_concise(preorder[mid + 1..-1], inorder[mid + 1..-1])
+
+	return root
+end
+
 def create_tree(preorder, ps, pe, inorder, is, ie)
         if ps > pe || is > ie
                 return nil
